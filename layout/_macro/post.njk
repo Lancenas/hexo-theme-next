@@ -87,7 +87,12 @@
           {%- endif %}
           <!--/noindex-->
         {% else %}
-          {{ post.content }}
+          {{ post.content | striptags | truncate(150) }}
+          <div class="post-button">
+              <a class="btn" href="{{ url_for(post.path) }}">
+                {{ __('post.read_more') }} &raquo;
+              </a>
+          </div>
         {%- endif %}
       {% else %}
         {{- next_inject('postBodyStart') }}
